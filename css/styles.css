@@ -114,10 +114,13 @@ body {
 	padding: 24px 0;
 	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .menu-link:hover,
 .menu-link:focus {
 	color: var(--ocean);
+}
+.menu-link:hover::after,
+.menu-link:focus::after {
+	opacity: 1;
 }
 
 .menu-link.active-link {
@@ -125,16 +128,31 @@ body {
 	color: var(--ocean);
 }
 
-.menu-link.active-link::after {
+a.menu-link.active-link::after {
 	content: "";
 	position: absolute;
 	left: 0;
 	bottom: -1px;
 	width: 100%;
 	height: 4px;
+	opacity: 1;
 	border-radius: 2px;
 	border: 2px solid var(--ocean);
 	background-color: var(--ocean);
+}
+
+.menu-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 100%;
+	height: 4px;
+	opacity: 0;
+	border-radius: 2px;
+	border: 2px solid var(--ocean);
+	background-color: var(--ocean);
+	transition: opacity 250ms 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-right-navigation {
@@ -212,21 +230,19 @@ body {
 	font-weight: 500;
 	letter-spacing: 0.64px;
 	cursor: pointer;
-	border: 1px solid var(--iris);
+	border: none;
 
 	color: var(--white, #fff);
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-		border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1),
-		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-		border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-order-service:hover,
 .button-order-service:focus {
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	background-color: var(--ocean, #404bbf);
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-	border: 1px solid var(--ocean, #404bbf);
+	/* border: 1px solid var(--ocean, #404bbf); */
 }
 
 /* Benefits Section */
@@ -408,8 +424,7 @@ body {
 	cursor: pointer;
 
 	padding: 12px 24px;
-	justify-content: center;
-	align-items: center;
+
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
 		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
 		color 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -471,7 +486,8 @@ body {
 	letter-spacing: 0.32px;
 }
 
-.card-item:hover .portfolio-overlay-text {
+.card-item a:hover .portfolio-overlay-text,
+.card-item a:focus .portfolio-overlay-text {
 	transform: translateY(0);
 }
 
@@ -598,7 +614,8 @@ body {
 	background-color: rgba(0, 0, 0, 0.2);
 	opacity: 1;
 
-	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal {
@@ -607,6 +624,7 @@ body {
 	left: 50%;
 	min-width: 408px;
 	min-height: 584px;
+	border-radius: 4px;
 	background-color: var(--dairy);
 
 	transform: translate(-50%, -50%) scale(1);
@@ -614,7 +632,7 @@ body {
 }
 
 .backdrop.is-hidden .modal {
-	translate: (-50%, 50%) scale(0);
+	/* transform: translate(-50%, -50%); */
 }
 
 .modal-close {
@@ -642,7 +660,7 @@ body {
 }
 
 .is-hidden {
-	visibility: none;
+	visibility: hidden;
 	opacity: 0;
 	pointer-events: none;
 }
