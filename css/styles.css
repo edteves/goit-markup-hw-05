@@ -109,6 +109,7 @@ body {
 }
 
 .menu-link {
+	position: relative;
 	color: var(--navyblue, #2e2f42);
 	letter-spacing: 0.32px;
 	display: block;
@@ -153,7 +154,7 @@ a.menu-link.active-link::after {
 	border-radius: 2px;
 	border: 2px solid var(--ocean);
 	background-color: var(--ocean);
-	transition: opacity 250ms 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-right-navigation {
